@@ -4,39 +4,40 @@ from django.shortcuts import reverse
 # Create your models here.
 #danieeeeel
 
-print("sasdaa")
-
-class Mensaje(models.Model):
-
-    mensaje = models.TextField(max_length=255, verbose_name='Mensaje')
-
-    def __str__(self):
-        return str(self.mensaje)
 
 
+class Message(models.Model):
 
-class Plato(models.Model):
-
-    contenido = models.CharField(max_length=255, verbose_name='Contenido')
+    content = models.TextField(max_length=255, verbose_name='Message')
 
     def __str__(self):
-        return str(self.contenido)
+        return str(self.content)
+
+
+
+class Dish(models.Model):
+
+    name = models.CharField(max_length=255, verbose_name='Dish Name')
+
+    def __str__(self):
+        return str(self.name)
 
 
 class Menu(models.Model):
 
-    fecha = models.DateField(auto_created=True)
-    opciones = models.ManyToManyField(Plato, verbose_name='Plato')
+    timestamp = models.DateField(auto_created=True)
+    schedule  = models.DateField()
+    dishes    = models.ManyToManyField(Dish, verbose_name="Menu Dishes")
 
     def __str__(self):
-        return str(self.fecha.strftime("%A %d-%m-%Y"))
+        return str(self.timestamp.strftime("%A %d-%m-%Y"))
 
 
-class Orden(models.Model):
+class Order(models.Model):
 
-    fecha = models.DateField(verbose_name='Fecha')
-    menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
-    comentario = models.CharField(max_length=255, default='', verbose_name='Comentarios', blank=True)
+    timestamp  = models.DateField(verbose_name='Fecha',auto_created=True)
+    dish       = models.ForeignKey(Dish, on_delete=models.CASCADE)
+    comment    = models.CharField(max_length=255, default='', verbose_name='Comentarios', blank=True)
 
     def __str__(self):
-        return str(self.fecha) + " - " + str(self.menu) + " - " + str(self.comentario)
+        return str(self.timestamp) + " - " + str(self.dish) + " - " + str(self.comment)
