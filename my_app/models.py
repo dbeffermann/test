@@ -2,7 +2,9 @@ from django.db import models
 import datetime as datetime
 from django.shortcuts import reverse
 # Create your models here.
+#danieeeeel
 
+print("a")
 
 class Mensaje(models.Model):
 
