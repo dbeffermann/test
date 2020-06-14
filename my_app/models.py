@@ -4,7 +4,7 @@ from django.shortcuts import reverse
 # Create your models here.
 #danieeeeel
 
-print("a")
+print("sasdaa")
 
 class Mensaje(models.Model):
 
