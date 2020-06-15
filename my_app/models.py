@@ -19,7 +19,7 @@ class Menu(models.Model):
     schedule  = models.DateField()
     dishes    = models.ManyToManyField(Dish, verbose_name="Menu Dishes")
     def __str__(self):
-        return str(self.timestamp.strftime("%A %d-%m-%Y"))
+        return str(self)
 
 class Order(models.Model):
     timestamp  = models.DateField(verbose_name='Fecha',auto_created=True)

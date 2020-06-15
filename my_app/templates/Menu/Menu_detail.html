@@ -1,0 +1,12 @@
+<h1>Menu #{{object_list.id}}</h1>
+<ul>
+<!--Using string interpolation (double curly braces)
+1.  To print individual values by looping though the objects from the context variable.
+    we retrieved (or injected if you may) from the a view that triggers when requesting a specific url
+    (still not flexible enough) with this method we are specting in the MenuTemplate that "there is 
+    a context variable" -->
+{% if object_list %}
+
+    <li>{{object_list.name}}</li>
+{% endif %}
+</ul><hr><br>
