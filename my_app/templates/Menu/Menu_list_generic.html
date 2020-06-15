@@ -1,12 +1,34 @@
-<h1>My Menus (Vista Generica)</h1>
+<h1>My Menus (generic ListView)</h1>
 <ul>
+<!--Using string interpolation (double curly braces)
+1.  To print individual values by looping though the objects from the context variable.
+    we retrieved (or injected if you may) from the a view that triggers when requesting a specific url
+    (still not flexible enough) with this method we are specting in the MenuTemplate that "there is 
+    a context variable" -->
+{% if object_list %}
 {% for instance in object_list %}
     <li>{{instance.id}}.- {{instance.timestamp}} - {{instance.schedule}} - {{instance.dishes}}</li>
-    <br>
 {% endfor %}
-</ul>
+</ul><hr><br>
+{% endif %}
 
-<hr>
-<br>
+<!--
+Using a Django's buil-int template utility called url:
+1.- This utility performs a reverse lookup through the names we gave to the urlpatterns
+    we defined on this app's urls.py module.
+2.- By pointing to views instead of using hard-coded urls to generate links for the user, 
+    we can avoid looping through the object's properties we want to output.
+    individual properties of the object we retrieve from the views.py  the with string 
+    interpolation feature (double curly braces). This url reversing technique provides more flexibility by logically
+    mapping through this simple syntax: {app name:view name x} with x as a eventual parameter for 
+    mapping DetailViews from ListViews and to generate urls to different views of the app and other apps.
+3.- Remember that the same principle of inheritance we apply on views, whe can apply it on templates aswell.
+ -->  
 
-{{}}
+ <!--The url utility builds that string that represents the path we are looking for by reversing a 
+     a lookup-->
+ {% url 'gview:generic_menu_list_view' %} 
+
+
+
+

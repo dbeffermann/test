@@ -14,7 +14,8 @@ def MenuListView(request):
 
 #List Based on a Django's generic view class. (comment: next step is to reflect this on the actual template)
 class Menu_list_view_generic(ListView):
-    template_name = "Menu/Menu_list_generic.html"
+    #template_name = "Menu/Menu_list_generic.html"
+    model = Menu
     queryset = Menu.objects.all()
     
 
